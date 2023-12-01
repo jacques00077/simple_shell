@@ -12,11 +12,12 @@
 int main(int argc, char *argv[])
 {
 	(void)argc, (void)argv;
-	char *buff = NULL;
+	char *buff = NULL, *token;
 	size_t trunks = 0;
 	ssize_t nrd;
 	pid_t rice;
-	int beans
+	int i, beans;
+	char **stew;
 
 	while (1)
 	{
@@ -30,26 +31,41 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 
+		token = strtok(buff, " \n");
+
+		stew = malloc(sizeof(char*) * 1024);
+		i = 0;
+
+		while (token)
+		{
+			stew[i] = token;
+			token = strtok(NULL, " \n");
+			i++;
+		}
+
+		stew[i] = NULL;
+
 		rice = fork();
 
 		if (rice == -1)
 		{
 			perror("Failed to create.");
-			exit (410);
+			exit (31);
 		}
 
 		if (rice == 0)
 		{
-			/* We can execute the user input because the creation was successful */
-			printf("Creation successful");
+			if (execve(path, stew, NULL) == -1)
+			{
+				perror("Failed to execute");
+				exit (87);
+			}
 		}
+
 		else
 		{
-			/* Wait for the child_process to execute before termination of the parent process */
-			wait(*bean);
+			wait(&beans);
 		}
-		printf("%s", buff);
-		printf("Buffer size: %ld\n", trunks);
 	}
 		free(buff);
 		return (0);
