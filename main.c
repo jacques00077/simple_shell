@@ -9,10 +9,10 @@
  *
  */
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	(void)argc, (void)argv;
-	char *buff = NULL, *token;
+	char *buff = NULL, *token, *way;
 	size_t trunks = 0;
 	ssize_t nrd;
 	pid_t rice;
@@ -21,14 +21,15 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "JBShell$ ", 9);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "JBShell$ ", 9);
+		
 		nrd = getline(&buff, &trunks, stdin);
 
 		if (nrd == -1)
 
 		{
-			perror("Exiting shell");
-			exit(1);
+			exit(0);
 		}
 
 		token = strtok(buff, " \n");
@@ -45,20 +46,22 @@ int main(int argc, char *argv[])
 
 		stew[i] = NULL;
 
+		way = get_file_path(stew[0]);
+
 		rice = fork();
 
 		if (rice == -1)
 		{
 			perror("Failed to create.");
-			exit (31);
+			exit(31);
 		}
 
 		if (rice == 0)
 		{
-			if (execve(path, stew, NULL) == -1)
+			if (execve(way, stew, NULL) == -1)
 			{
 				perror("Failed to execute");
-				exit (87);
+				exit(87);
 			}
 		}
 
@@ -67,6 +70,7 @@ int main(int argc, char *argv[])
 			wait(&beans);
 		}
 	}
-		free(buff);
-		return (0);
+	free(way);
+	free(buff);
+	return (0);
 }

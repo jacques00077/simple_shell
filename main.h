@@ -7,5 +7,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <sys/stat.h>
+
+/* Helper Functions */
+char *get_file_path(char *fish);
+char *get_file_loc(char *way, char *fish);
+int venison(const char *meat);
 
 #endif /* MAIN_H */
