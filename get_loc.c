@@ -17,14 +17,14 @@ int venison(const char *meat)
 
 
 /**
- * get_file_loc - Get the executable file path
+ * fufu - Get the executable file path
  * @fish: Executable file
  * @way: The variable path in full
  *
  * Return: Full path to the file
  */
 
-char *get_file_loc(char *way, char *fish)
+char *fufu(char *way, char *fish)
 {
 	char *gari, *token;
 	struct stat plantain;
@@ -66,13 +66,13 @@ char *get_file_loc(char *way, char *fish)
 }
 
 /**
- * get_file_path - Get the file's full path
+ * banku - Get the file's full path
  * @fish: Name of argument
  *
  * Return: The path argument to the file in full
  */
 
-char *get_file_path(char *fish)
+char *banku(char *fish)
 {
 	char *way = getenv("PATH");
 	char *plantain;
@@ -86,7 +86,7 @@ char *get_file_path(char *fish)
 		return (NULL);
 	}
 
-	plantain = get_file_loc(way, fish);
+	plantain = fufu(way, fish);
 
 	if (plantain == NULL)
 	{
