@@ -26,7 +26,7 @@ char *chicken(void)
 	jb = 0;
 	nrd = getline(&soup, &jb, stdin);
 
-	if(nrd == -1)
+	if (nrd == -1)
 	{
 		free(soup);
 		exit(0);
@@ -56,7 +56,7 @@ void exec_comm(char *ac, char *av[], char **env)
 
 	if (noac == 0)
 		return;
-	if(pear(tree, noac, ac, env) == 1)
+	if (pear(tree, noac, ac, env) == 1)
 		return;
 	way = banku(tree[0]);
 
@@ -98,7 +98,7 @@ void exec_comm(char *ac, char *av[], char **env)
 
 int pear(char **tree, int noac, char *ac, char **env)
 {
-	if (strcmp(tree[0], "exit") ==0)
+	if (strcmp(tree[0], "exit") == 0)
 	{
 		return (eggs(tree, ac));
 	}
