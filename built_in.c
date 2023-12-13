@@ -38,21 +38,21 @@ void manage_exit(char *ac, int escape)
 int eggs(char **tree, char *ac)
 {
 	char *o_status;
-	int escape, k;
+	int escape, q;
 
 	if (tree[1] != NULL)
 	{
 		escape = 0;
 		o_status = tree[1];
 
-		for (k = 0; o_status[k] != '\0'; k++)
+		for (q = 0; o_status[q] != '\0'; q++)
 		{
-			if (o_status[k] < '0' || o_status[k] > '9')
+			if (o_status[q] < '0' || o_status[q] > '9')
 			{
 				manage_exit(ac, 2);
 				return (1);
 			}
-			escape = escape * 10 + (o_status[k] - '0');
+			escape = escape * 10 + (o_status[q] - '0');
 		}
 		manage_exit(ac, escape);
 	}
