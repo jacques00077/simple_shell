@@ -11,7 +11,7 @@ char *yam(char *ac)
 {
 	char *cocoa;
 
-	cocoa = strstr(ac, "#");
+	cocoa = strstr(ac, " #");
 
 	if (cocoa)
 	{

@@ -73,8 +73,8 @@ void plant_cd(char **tree, int noac)
 {
 	const char *home_dir, *old_dir;
 
-	home_dir = getenv("$HOME");
-	old_dir = getenv("PWD");
+	home_dir = getenv("HOME");
+	old_dir = getenv("OLDPWD");
 
 	if (noac == 1 || strcmp(tree[1], "-") == 0)
 	{
@@ -90,7 +90,7 @@ void plant_cd(char **tree, int noac)
 	{
 		if (!old_dir)
 		{
-			perror("PWD environment is unset");
+			perror("OLDPWD environment is unset");
 			return;
 		}
 		if (chdir(old_dir) != 0)
